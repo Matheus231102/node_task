@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<link rel="stylesheet" href="/style_index.css">
+
+<body>
+    <h1>To-Do List</h1>
+
+    <div class="todo-container">
+
+        <form id="taskForm">
+            <input type="text" id="taskInput" placeholder="Enter a task">
+            <button type="submit" id="add_button">Adicionar Tarefa</button>
+            <button type="button" id="remove_button">Remover Tarefas</button>
+        </form>
+
+        <ul id="taskList">
+            <% array_data.forEach((value, index)=> { %>
+                <li>
+                    <%= value %>
+                </li>
+            <% }) %>
+        </ul>
+
+    </div>
+
+
+</body>
+<script src="/script_index.js"></script>
+
+</html>
