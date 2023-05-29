@@ -13,12 +13,12 @@ app.use(express.urlencoded({
 }))
 
 app.set('view engine', 'ejs')
-
 app.use(express.static('public'))
+
 
 app.get('/tasks', (req, res) => {
     const tasks_description_array = []
-    tasks_model.find({}) 
+    tasks_model.find({})
         .then((data) => {
             data.forEach((taskObject) => {
                 tasks_description_array.push(taskObject.task.description)
@@ -41,7 +41,7 @@ app.post('/task_post', (req, res) => {
     tasks_model.create(document)
         .then((data) => {
             res.redirect('/tasks')
-        })          
+        })
 })
 
 app.post('/task_delete', (req, res) => {
@@ -66,6 +66,34 @@ app.delete('/tasks_delete', (req, res) => {
             console.log('Não foi possível deletar os documentos!')
         })
 })
+
+app.post('/task_edit', (req, res) => {
+    const json_body = req.body
+    const oldValue = json_body.taskOldValue
+    // const newValue = json_body.taskNewValue
+    const newValue = 'esse campo foi editado!'
+
+    tasks_model.findOne({ "task.description": oldValue })
+        .then((doc) => {
+            console.log(doc);
+
+            if (doc) {
+                doc.task.description = newValue;
+                doc.save();
+            } else {
+                console.log("Documento não encontrado!");
+            }
+        })
+        .then(() => {
+            console.log("Campo atualizado com sucesso!");
+        })
+        .catch(() => {
+            console.log("Ocorreu um erro ao consultar ou atualizar o documento!");
+        });
+
+    res.redirect('/tasks')
+})
+
 
 module.exports = {
     app

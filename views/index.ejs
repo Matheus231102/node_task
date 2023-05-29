@@ -21,15 +21,19 @@
         <ul id="taskList">
             <% array_data.forEach((value, index)=> { %>
                 <li>
-                    <%= value %>
-                    <%= index %>
-                    <button class="delete_button" onclick="delete_task('<%= value %>')">excluir</button>
+                    <div class="value_task">
+                        <%= value %>
+                    </div>
+                    <div class="buttons_task">
+                        <button class="edit_button" onclick="edit_task('<%= value %>')">editar</button>
+                        <button class="delete_button" onclick="delete_task('<%= value %>')">excluir</button>
+                    </div>
                 </li>
-            <% }) %>
+                <% }) %>
         </ul>
-
     </div>
 </body>
 
 <script src="/script_index.js"></script>
+
 </html>

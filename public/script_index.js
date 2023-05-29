@@ -50,5 +50,24 @@ function delete_task(task_value) {
     })
 }
 
+function edit_task(taskOldValue, taskNewValue) {
 
+    fetch('/task_edit', {
+        method: 'POST',
+        body: JSON.stringify({
+            "taskOldValue": taskOldValue,
+            "taskNewValue": taskNewValue
+    }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(() => {
+        location.reload()
+        console.log(task_value)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
 
