@@ -44,6 +44,19 @@ app.post('/task_post', (req, res) => {
         })          
 })
 
+app.post('/task_delete', (req, res) => {
+
+    console.log(req.body)
+
+    tasks_model.deleteOne({ "task.description": req.body.task_value })
+        .then(() => {
+            res.redirect('/tasks')
+        })
+        .catch((err) => {
+            console.log('Não foi possível deletar os documentos!')
+        })
+})
+
 app.delete('/tasks_delete', (req, res) => {
     tasks_model.deleteMany({})
         .then(() => {

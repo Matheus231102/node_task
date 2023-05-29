@@ -33,7 +33,22 @@ document.getElementById('remove_button').addEventListener('click', function() {
     })
 })
 
-
+function delete_task(task_value) {
+    fetch('/task_delete', {
+        method: 'POST',
+        body: JSON.stringify({ "task_value": task_value }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(() => {
+        location.reload()
+        console.log(task_value)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
 
 
 

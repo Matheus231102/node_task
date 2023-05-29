@@ -22,14 +22,14 @@
             <% array_data.forEach((value, index)=> { %>
                 <li>
                     <%= value %>
+                    <%= index %>
+                    <button class="delete_button" onclick="delete_task('<%= value %>')">excluir</button>
                 </li>
             <% }) %>
         </ul>
 
     </div>
-
-
 </body>
-<script src="/script_index.js"></script>
 
+<script src="/script_index.js"></script>
 </html>
